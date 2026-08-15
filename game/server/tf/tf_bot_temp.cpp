@@ -2013,7 +2013,7 @@ bool botdata_t::FindEnemyTarget( void )
 
 	// Try to target players first, then objects.  However, if the enemy held was an object it will continue
 	// to try and attack it first.
-	int nTeamCount = pTeam->GetNumPlayers();
+	intp nTeamCount = pTeam->GetNumPlayers();
 	for ( int iPlayer = 0; iPlayer < nTeamCount; ++iPlayer )
 	{
 		CTFPlayer *pTargetPlayer = static_cast<CTFPlayer*>( pTeam->GetPlayer( iPlayer ) );

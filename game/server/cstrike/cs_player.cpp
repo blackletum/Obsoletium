@@ -1829,9 +1829,9 @@ int CCSPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 	{
 
 		//Count enemies
-		int livingEnemies = 0;
+		intp livingEnemies = 0;
 		CTeam *pAttackerTeam = GetGlobalTeam( pAttacker->GetTeamNumber() );
-		for ( int iPlayer=0; iPlayer < pAttackerTeam->GetNumPlayers(); iPlayer++ )
+		for ( intp iPlayer=0; iPlayer < pAttackerTeam->GetNumPlayers(); iPlayer++ )
 		{
 			CCSPlayer *pPlayer = ToCSPlayer( pAttackerTeam->GetPlayer( iPlayer ) );
 			Assert( pPlayer );
@@ -7446,8 +7446,8 @@ void CCSPlayer::ResetRoundBasedAchievementVariables()
 {
 	m_KillingSpreeStartTime = -1;
 
-	int numCTPlayers = 0, numTPlayers = 0;
-	for (int i = 0; i < g_Teams.Count(); i++ )
+	intp numCTPlayers = 0, numTPlayers = 0;
+	for (intp i = 0; i < g_Teams.Count(); i++ )
 	{
 		if(g_Teams[i])
 		{
@@ -7954,7 +7954,7 @@ void CCSPlayer::OnRoundEnd(int winningTeam, int reason)
 		
 		CTeam* losingTeam = GetGlobalTeam(losingTeamId);
 
-		int losingTeamPlayers = 0;
+		intp losingTeamPlayers = 0;
 
 		if (losingTeam)
 		{

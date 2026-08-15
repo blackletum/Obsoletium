@@ -2747,7 +2747,7 @@ void CDODPlayer::State_Enter_OBSERVER_MODE()
 	float flMinDist = FLT_MAX;
 	float flDist;
 
-	for ( int i=0;i<pTeam->GetNumPlayers();i++ )
+	for ( intp i=0;i<pTeam->GetNumPlayers();i++ )
 	{
 		pPlayer = pTeam->GetPlayer(i);
 

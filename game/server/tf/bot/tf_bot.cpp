@@ -604,7 +604,7 @@ void CMD_BotWarpTeamToMe( void )
 		return;
 
 	CTeam *myTeam = player->GetTeam();
-	for( int i=0; i<myTeam->GetNumPlayers(); ++i )
+	for( intp i=0; i<myTeam->GetNumPlayers(); ++i )
 	{
 		if ( !myTeam->GetPlayer(i)->IsAlive() )
 			continue;
@@ -2689,7 +2689,7 @@ public:
 		CTFNavArea *area = (CTFNavArea *)baseArea;
 
 		CTeam *enemyTeam = GetGlobalTeam( m_enemyTeamIndex );
-		for( int i=0; i<enemyTeam->GetNumPlayers(); ++i )
+		for( intp i=0; i<enemyTeam->GetNumPlayers(); ++i )
 		{
 			CTFPlayer *enemy = (CTFPlayer *)enemyTeam->GetPlayer(i);
 

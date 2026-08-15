@@ -102,7 +102,7 @@ extern bool IsSpaceToSpawnHere( const Vector &where );
 bool IsPlayerVisibleToTeam( CTFPlayer *subject, int teamIndex )
 {
 	CTeam *team = GetGlobalTeam( teamIndex );
-	for( int t=0; t<team->GetNumPlayers(); ++t )
+	for( intp t=0; t<team->GetNumPlayers(); ++t )
 	{
 		CTFPlayer *teamMember = (CTFPlayer *)team->GetPlayer(t);
 
@@ -135,7 +135,7 @@ int GetAvailableRedSpawnSlots( void )
 
 	// count dead bots we can re-use
 	CTeam *deadTeam = GetGlobalTeam( TEAM_SPECTATOR );
-	for( int i=0; i<deadTeam->GetNumPlayers(); ++i )
+	for( intp i=0; i<deadTeam->GetNumPlayers(); ++i )
 	{
 		if ( !deadTeam->GetPlayer(i)->IsBot() )
 			continue;
@@ -267,7 +267,7 @@ void CRaidLogic::OnRoundStart( void )
 
 	// unspawn entire red team
 	CTeam *defendingTeam = GetGlobalTeam( TF_TEAM_RED );
-	int i;
+	intp i;
 	for( i=0; i<defendingTeam->GetNumPlayers(); ++i )
 	{
 		engine->ServerCommand( UTIL_VarArgs( "kickid %d\n", defendingTeam->GetPlayer(i)->GetUserID() ) );
@@ -480,7 +480,7 @@ public:
 		m_floor = FLT_MAX;
 
 		CTeam *invaderTeam = GetGlobalTeam( TF_TEAM_BLUE );
-		for( int i=0; i<invaderTeam->GetNumPlayers(); ++i )
+		for( intp i=0; i<invaderTeam->GetNumPlayers(); ++i )
 		{
 			if ( !invaderTeam->GetPlayer(i)->IsAlive() )
 				continue;
@@ -1242,7 +1242,7 @@ return;
 	float cullMinIncursionDistance = minIncursion - 1.1f * tf_populator_active_buffer_range.GetFloat();
 	float cullMaxIncursionDistance = maxIncursion + 1.1f * tf_populator_active_buffer_range.GetFloat();
 
-	for( int i=0; i<defenseTeam->GetNumPlayers(); ++i )
+	for( intp i=0; i<defenseTeam->GetNumPlayers(); ++i )
 	{
 		if ( !defenseTeam->GetPlayer(i)->IsBot() )
 			continue;
@@ -1278,7 +1278,7 @@ return;
 	if ( IsMobSpawning() && GetAvailableRedSpawnSlots() <= 0 )
 	{
 		// try to make room by removing an unseen wanderer
-		for( int i=0; i<defenseTeam->GetNumPlayers(); ++i )
+		for( intp i=0; i<defenseTeam->GetNumPlayers(); ++i )
 		{
 			if ( !defenseTeam->GetPlayer(i)->IsBot() )
 				continue;
@@ -1460,7 +1460,7 @@ void CRaidLogic::Update( void )
 	if ( IsWaitingForRaidersToLeaveSafeRoom() )
 	{
 		// has anyone left?
-		for( int i=0; i<raidingTeam->GetNumPlayers(); ++i )
+		for( intp i=0; i<raidingTeam->GetNumPlayers(); ++i )
 		{
 			CTFPlayer *player = (CTFPlayer *)raidingTeam->GetPlayer(i);
 
@@ -1488,7 +1488,7 @@ void CRaidLogic::Update( void )
 	else
 	{
 		int aliveCount = 0;
-		for( int i=0; i<raidingTeam->GetNumPlayers(); ++i )
+		for( intp i=0; i<raidingTeam->GetNumPlayers(); ++i )
 		{
 			CTFPlayer *player = ToTFPlayer( raidingTeam->GetPlayer(i) );
 
@@ -1584,7 +1584,7 @@ void CRaidLogic::Update( void )
 
 	m_farthestAlongRaider = NULL;
 	CTFPlayer *capturer = NULL;
-	int i;
+	intp i;
 
 	for( i=0; i<raidingTeam->GetNumPlayers(); ++i )
 	{
@@ -2026,7 +2026,7 @@ CTFPlayer *CRaidLogic::SelectRaiderToAttack( void )
 
 	// attack point cappers first
 	CUtlVector< CTFPlayer * > victimVector;
-	int i;
+	intp i;
 	for( i=0; i<invaderTeam->GetNumPlayers(); ++i )
 	{
 		CTFPlayer *player = (CTFPlayer *)invaderTeam->GetPlayer(i);

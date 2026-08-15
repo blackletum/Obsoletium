@@ -551,7 +551,7 @@ bool CTFBotManager::IsAllBotTeam( int iTeam )
 	}
 
 	// check to see if any players on the team are humans
-	for ( int i = 0, n = pTeam->GetNumPlayers(); i < n; ++i )
+	for ( intp i = 0, n = pTeam->GetNumPlayers(); i < n; ++i )
 	{
 		CTFPlayer *pPlayer = ToTFPlayer( pTeam->GetPlayer( i ) );
 		if ( pPlayer == NULL )

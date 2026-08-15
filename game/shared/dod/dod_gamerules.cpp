@@ -882,8 +882,8 @@ static CDODViewVectors g_DODViewVectors(
 		CDODTeam *pAllies = GetGlobalDODTeam(TEAM_ALLIES);
 		CDODTeam *pAxis = GetGlobalDODTeam(TEAM_AXIS);
 
-		int iNumAllies = pAllies->GetNumPlayers();
-		int iNumAxis = pAxis->GetNumPlayers();
+		intp iNumAllies = pAllies->GetNumPlayers();
+		intp iNumAxis = pAxis->GetNumPlayers();
 
 		int iAlliesRoundsWon = pAllies->GetRoundsWon();
 		int iAxisRoundsWon  = pAxis->GetRoundsWon();
@@ -2888,8 +2888,8 @@ const CDODViewVectors *CDODGameRules::GetDODViewVectors() const
 		CDODTeam *pTeam = GetGlobalDODTeam( iTeam );
 		if ( pTeam )
 		{
-			int iNumPlayers = pTeam->GetNumPlayers();
-			for ( int i=0;i<iNumPlayers;i++ )
+			intp iNumPlayers = pTeam->GetNumPlayers();
+			for ( intp i=0;i<iNumPlayers;i++ )
 			{
 				CDODPlayer *pPlayer = pTeam->GetDODPlayer(i);
 				if ( !pPlayer )
@@ -3390,7 +3390,7 @@ const CDODViewVectors *CDODGameRules::GetDODViewVectors() const
 
 			winEvent->SetInt( "final_event", iLastEvent );
 
-			int i;
+			intp i;
 			int index;
 
 			CUtlVector<playerscore_t> m_TopCappers;
@@ -3400,7 +3400,7 @@ const CDODViewVectors *CDODGameRules::GetDODViewVectors() const
 
 			CDODTeam *pWinningTeam = GetGlobalDODTeam( team );
 
-			int iNumPlayers = pWinningTeam->GetNumPlayers();
+			intp iNumPlayers = pWinningTeam->GetNumPlayers();
 
 			for ( i=0;i<iNumPlayers;i++ )
 			{

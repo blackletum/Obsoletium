@@ -318,7 +318,7 @@ CTFNavArea *CSpawnLocation::SelectSpawnArea( void ) const
 	CTFNavArea::MakeNewTFMarker();
 
 	CTeam *team = GetGlobalTeam( TF_TEAM_BLUE );
-	for( int t=0; t<team->GetNumPlayers(); ++t )
+	for( intp t=0; t<team->GetNumPlayers(); ++t )
 	{
 		CTFPlayer *teamMember = (CTFPlayer *)team->GetPlayer(t);
 

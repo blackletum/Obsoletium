@@ -2523,7 +2523,7 @@ void C_DODPlayer::AvoidPlayers( CUserCmd *pCmd )
 	float flAvoidRadius = 0.0f;
 
 	Vector vecAvoidCenter, vecAvoidMin, vecAvoidMax;
-	for ( int i = 0; i < pTeam->GetNumPlayers(); ++i )
+	for ( intp i = 0; i < pTeam->GetNumPlayers(); ++i )
 	{
 		C_DODPlayer *pAvoidPlayer = static_cast< C_DODPlayer * >( pTeam->GetPlayer( i ) );
 		if ( pAvoidPlayer == NULL )

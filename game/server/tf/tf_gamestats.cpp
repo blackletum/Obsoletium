@@ -639,7 +639,7 @@ void CTFGameStats::Event_PlayerSpawned( CTFPlayer *pPlayer )
 	// calculate peak player count on each team
 	for ( iTeam = FIRST_GAME_TEAM; iTeam < TF_TEAM_COUNT; iTeam++ )
 	{
-		int iPlayerCount = GetGlobalTeam( iTeam )->GetNumPlayers();
+		intp iPlayerCount = GetGlobalTeam( iTeam )->GetNumPlayers();
 		if ( iPlayerCount > map->m_iPeakPlayerCount[iTeam] )
 		{
 			map->m_iPeakPlayerCount[iTeam] = iPlayerCount;
@@ -2107,7 +2107,7 @@ void CTFGameStats::SW_GameStats_WriteRound( int iWinningTeam, bool bFullRound, i
 
 	for ( int iTeam = FIRST_GAME_TEAM; iTeam < TF_TEAM_COUNT; iTeam++ )
 	{
-		int iPlayerCount = GetGlobalTeam( iTeam )->GetNumPlayers();
+		intp iPlayerCount = GetGlobalTeam( iTeam )->GetNumPlayers();
 		if ( iPlayerCount == 0 )
 			continue;
 		switch ( iTeam )

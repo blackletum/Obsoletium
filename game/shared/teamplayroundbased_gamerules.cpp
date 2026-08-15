@@ -644,7 +644,7 @@ float CTeamplayRoundBasedRules::GetRespawnTimeScalar( int iTeam )
 	// For long respawn times, scale the time as the number of players drops
 	int iOptimalPlayers = 8;	// 16 players total, 8 per team
 
-	int iNumPlayers = GetGlobalTeam(iTeam)->GetNumPlayers();
+	intp iNumPlayers = GetGlobalTeam(iTeam)->GetNumPlayers();
 
 	float flScale = RemapValClamped( iNumPlayers, 1, iOptimalPlayers, 0.25, 1.0 );
 	return flScale;
@@ -2180,11 +2180,11 @@ void CTeamplayRoundBasedRules::State_Think_STALEMATE( void )
 		CTeam *pTeam = GetGlobalTeam(i);
 		Assert( pTeam );
 
-		int iPlayers = pTeam->GetNumPlayers();
+		intp iPlayers = pTeam->GetNumPlayers();
 		if ( iPlayers )
 		{
 			bool bFoundLiveOne = false;
-			for ( int player = 0; player < iPlayers; player++ )
+			for ( intp player = 0; player < iPlayers; player++ )
 			{
 				if ( pTeam->GetPlayer(player) && pTeam->GetPlayer(player)->IsAlive() )
 				{
@@ -3100,7 +3100,7 @@ void CTeamplayRoundBasedRules::BalanceTeams( bool bRequireSwitcheesToBeDead )
 
 	Assert( pHeavyTeam && pLightTeam );
 
-	int iNumSwitchesRequired = ( pHeavyTeam->GetNumPlayers() - pLightTeam->GetNumPlayers() ) / 2;
+	intp iNumSwitchesRequired = ( pHeavyTeam->GetNumPlayers() - pLightTeam->GetNumPlayers() ) / 2;
 
 	// sort the eligible players and switch the n best candidates
 	CUtlVector<CBaseMultiplayerPlayer *> vecPlayers;
@@ -3109,7 +3109,7 @@ void CTeamplayRoundBasedRules::BalanceTeams( bool bRequireSwitcheesToBeDead )
 
 	int iScore;
 
-	int i;
+	intp i;
 	for ( i = 0; i < pHeavyTeam->GetNumPlayers(); i++ )
 	{
 		pPlayer = ToBaseMultiplayerPlayer( pHeavyTeam->GetPlayer(i) );
@@ -3131,9 +3131,9 @@ void CTeamplayRoundBasedRules::BalanceTeams( bool bRequireSwitcheesToBeDead )
 	// sort the vector
 	vecPlayers.Sort( SwitchPlayersSort );
 
-	int iNumEligibleSwitchees = iNumSwitchesRequired + 2;
+	intp iNumEligibleSwitchees = iNumSwitchesRequired + 2;
 
-	for ( int i=0; i<vecPlayers.Count() && iNumSwitchesRequired > 0 && i < iNumEligibleSwitchees; i++ )
+	for ( intp i=0; i<vecPlayers.Count() && iNumSwitchesRequired > 0 && i < iNumEligibleSwitchees; i++ )
 	{
 		pPlayer = vecPlayers.Element(i);
 
@@ -3583,7 +3583,7 @@ bool CTeamplayRoundBasedRules::WouldChangeUnbalanceTeams( int iNewTeam, int iCur
 	}
 
 	// add one because we're joining this team
-	int iNewTeamPlayers = pNewTeam->GetNumPlayers() + 1;
+	intp iNewTeamPlayers = pNewTeam->GetNumPlayers() + 1;
 
 	// for each game team
 	int i = FIRST_GAME_TEAM;
@@ -3595,7 +3595,7 @@ bool CTeamplayRoundBasedRules::WouldChangeUnbalanceTeams( int iNewTeam, int iCur
 		if ( pTeam == pNewTeam )
 			continue;
 
-		int iNumPlayers = pTeam->GetNumPlayers();
+		intp iNumPlayers = pTeam->GetNumPlayers();
 
 		if ( i == iCurrentTeam )
 		{
@@ -3639,7 +3639,7 @@ bool CTeamplayRoundBasedRules::AreTeamsUnbalanced( int &iHeaviestTeam, int &iLig
 
 	for ( CTeam *pTeam = GetGlobalTeam(i); pTeam != NULL; pTeam = GetGlobalTeam(++i) )
 	{
-		int iNumPlayers = pTeam->GetNumPlayers();
+		intp iNumPlayers = pTeam->GetNumPlayers();
 
 		if ( iNumPlayers < iLeastPlayers )
 		{

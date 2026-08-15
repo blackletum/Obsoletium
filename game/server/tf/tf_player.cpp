@@ -5483,7 +5483,7 @@ CBaseEntity* CTFPlayer::EntSelectSpawnPoint()
 					{
 						// spawn on the least recently damaged friend
 						CTeam *raidingTeam = GetGlobalTeam( TF_TEAM_BLUE );
-						for( int i=0; i<raidingTeam->GetNumPlayers(); ++i )
+						for( intp i=0; i<raidingTeam->GetNumPlayers(); ++i )
 						{
 							CTFPlayer *buddy = (CTFPlayer *)raidingTeam->GetPlayer(i);
 
@@ -6048,8 +6048,8 @@ void CTFPlayer::HandleCommand_JoinTeam( const char *pTeamName )
 		{
 			// human raiders can only be on the blue team
 			CTeam *raidingTeam = GetGlobalTeam( TF_TEAM_BLUE );
-			int humanCount = 0;
-			for( int i=0; i<raidingTeam->GetNumPlayers(); ++i )
+			intp humanCount = 0;
+			for( intp i=0; i<raidingTeam->GetNumPlayers(); ++i )
 			{
 				if ( raidingTeam->GetPlayer(i)->IsBot() )
 					continue;
@@ -6113,9 +6113,9 @@ void CTFPlayer::HandleCommand_JoinTeam( const char *pTeamName )
 				CTeam *pBlueTeam = GetGlobalTeam( TF_TEAM_BLUE );
 				if ( pRedTeam && pBlueTeam )
 				{
-					int nRedCount = pRedTeam->GetNumPlayers();
-					int nBlueCount = pBlueTeam->GetNumPlayers();
-					int nGap = GetTeamNumber() == TF_TEAM_RED ? ( nBlueCount - nRedCount ) : ( nRedCount - nBlueCount );
+					intp nRedCount = pRedTeam->GetNumPlayers();
+					intp nBlueCount = pBlueTeam->GetNumPlayers();
+					intp nGap = GetTeamNumber() == TF_TEAM_RED ? ( nBlueCount - nRedCount ) : ( nRedCount - nBlueCount );
 					if ( nGap >= mp_teams_unbalance_limit.GetInt() )
 					{
 						ClientPrint( this, HUD_PRINTCENTER, "#Cannot_Be_Spectator_Unbalance" );
@@ -7530,7 +7530,7 @@ bool CTFPlayer::ClientCommand( const CCommand &args )
 			{
 				if ( args.ArgC() == 2 && GetTeam() )
 				{
-					for ( int i = 0; i < GetTeam()->GetNumPlayers(); i++ )
+					for ( intp i = 0; i < GetTeam()->GetNumPlayers(); i++ )
 					{
 						CTFPlayer *pTeamPlayer = ToTFPlayer( GetTeam()->GetPlayer(i) );
 						if ( pTeamPlayer )
@@ -7561,7 +7561,7 @@ bool CTFPlayer::ClientCommand( const CCommand &args )
 			{
 				if ( args.ArgC() == 2 && GetTeam() )
 				{
-					for ( int i = 0; i < GetTeam()->GetNumPlayers(); i++ )
+					for ( intp i = 0; i < GetTeam()->GetNumPlayers(); i++ )
 					{
 						CTFPlayer *pTeamPlayer = ToTFPlayer( GetTeam()->GetPlayer(i) );
 						if ( pTeamPlayer )
@@ -15725,7 +15725,7 @@ CBaseEntity *CTFPlayer::FindNearestObservableTarget( Vector vecOrigin, float flM
 	CBaseEntity *pReturnTarget = NULL;
 	bool bFoundClass = false;
 	float flCurDistSqr = (flMaxDist * flMaxDist);
-	int iNumPlayers = pTeam->GetNumPlayers();
+	intp iNumPlayers = pTeam->GetNumPlayers();
 
 	if ( pTeam->GetTeamNumber() == TEAM_SPECTATOR )
 	{
@@ -15733,7 +15733,7 @@ CBaseEntity *CTFPlayer::FindNearestObservableTarget( Vector vecOrigin, float flM
 	}
 
 
-	for ( int i = 0; i < iNumPlayers; i++ )
+	for ( intp i = 0; i < iNumPlayers; i++ )
 	{
 		CTFPlayer *pPlayer = NULL;
 
@@ -16110,7 +16110,7 @@ void CTFPlayer::Touch( CBaseEntity *pOther )
 
 				//Plague transmission event infects nearby eligible players on the same team. Only works for powerup carrier to host, not host to host.
 				const Vector& vecPos = pVictim->WorldSpaceCenter();
-				for ( int i = 0; i < pVictim->GetTeam()->GetNumPlayers(); i++ )
+				for ( intp i = 0; i < pVictim->GetTeam()->GetNumPlayers(); i++ )
 				{
 					CTFPlayer *pTeamMate = ToTFPlayer( pVictim->GetTeam()->GetPlayer( i ) );
 
@@ -17728,7 +17728,7 @@ void CTFPlayer::DoTauntAttack( void )
 		Vector vecOrg = GetAbsOrigin();
 
 		// Find nearby team mates and give them bonus health & crit chance
-		for ( int i = 0; i < GetTeam()->GetNumPlayers(); i++ )
+		for ( intp i = 0; i < GetTeam()->GetNumPlayers(); i++ )
 		{
 			CTFPlayer *pTeamPlayer = ToTFPlayer( GetTeam()->GetPlayer(i) );
 			if ( pTeamPlayer && pTeamPlayer->IsAlive() )

@@ -363,7 +363,7 @@ const char * CHL1MPRules::SetDefaultPlayerTeam( CBasePlayer *pPlayer )
 const char * CHL1MPRules::TeamWithFewestPlayers( void )
 {
 	const char * szName = "";
-	int iNumPlayers = 0xFFFF;
+	intp iNumPlayers = 0xFFFF;
 	for (int i = TEAM_SPECTATOR+1; i < GetNumberOfTeams(); i++)
 	{
 		if ( GetGlobalTeam(i)->GetNumPlayers() < iNumPlayers )

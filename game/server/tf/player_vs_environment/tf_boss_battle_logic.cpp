@@ -66,7 +66,7 @@ void CBossBattleLogic::Reset( void )
 {
 	// unspawn entire red team
 	CTeam *defendingTeam = GetGlobalTeam( TF_TEAM_RED );
-	int i;
+	intp i;
 	for( i=0; i<defendingTeam->GetNumPlayers(); ++i )
 	{
 		engine->ServerCommand( UTIL_VarArgs( "kickid %d\n", defendingTeam->GetPlayer(i)->GetUserID() ) );

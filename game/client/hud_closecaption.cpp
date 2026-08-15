@@ -2094,10 +2094,10 @@ public:
 	void AddRandomToken( CUtlVector< AsyncCaption_t >& directories )
 	{
 		intp dc = directories.Count();
-		int fileindex = RandomInt( 0, dc - 1 );
+		intp fileindex = RandomIntp( 0, dc - 1 );
 
 		intp c = directories[ fileindex ].m_CaptionDirectory.Count();
-		int idx = RandomInt( 0, c - 1 );
+		intp idx = RandomIntp( 0, c - 1 );
 
 		caption_t *caption = new caption_t;
 		char foo[ 16 ];

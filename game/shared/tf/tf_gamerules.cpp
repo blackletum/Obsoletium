@@ -2865,10 +2865,10 @@ void CTFGameRules::PlayerReadyStatus_UpdatePlayerState( CTFPlayer *pTFPlayer, bo
 		CMatchInfo *pMatch = GTFGCClientSystem()->GetMatch();
 		if ( !pMatch && !IsMannVsMachineMode() )
 		{
-			int nRed = 0;
-			int nRedCount = 0;
-			int nBlue = 0;
-			int nBlueCount = 0;
+			intp nRed = 0;
+			intp nRedCount = 0;
+			intp nBlue = 0;
+			intp nBlueCount = 0;
 
 			for ( int iTeam = FIRST_GAME_TEAM; iTeam < TFTeamMgr()->GetTeamCount(); iTeam++ )
 			{
@@ -2877,7 +2877,7 @@ void CTFGameRules::PlayerReadyStatus_UpdatePlayerState( CTFPlayer *pTFPlayer, bo
 				{
 					Assert( pTeam->GetTeamNumber() == TF_TEAM_RED || pTeam->GetTeamNumber() == TF_TEAM_BLUE );
 
-					for ( int i = 0; i < pTeam->GetNumPlayers(); ++i )
+					for ( intp i = 0; i < pTeam->GetNumPlayers(); ++i )
 					{
 						if ( !pTeam->GetPlayer(i) )
 							continue;
@@ -4658,7 +4658,7 @@ void CTFGameRules::SetupOnRoundStart( void )
 	if ( IsBossBattleMode() )
 	{
 		CTFTeam *enemyTeam = GetGlobalTFTeam( TF_TEAM_RED );
-		for( int i=0; i<enemyTeam->GetNumPlayers(); ++i )
+		for( intp i=0; i<enemyTeam->GetNumPlayers(); ++i )
 		{
 			CTFPlayer *who = ToTFPlayer( enemyTeam->GetPlayer( i ) );
 
@@ -14135,7 +14135,7 @@ void CTFGameRules::Arena_SendPlayerNotifications( void )
 
 		if ( pTeam )
 		{
-			for ( int iPlayer = 0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
+			for ( intp iPlayer = 0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
 			{
 				CTFPlayer *pPlayer = ToTFPlayer( pTeam->GetPlayer( iPlayer ) );
 
@@ -14609,7 +14609,7 @@ void CTFGameRules::RoundRespawn( void )
 	{
 		// unspawn entire red team
 		CTeam *defendingTeam = GetGlobalTeam( TF_TEAM_RED );
-		int i;
+		intp i;
 		for( i=0; i<defendingTeam->GetNumPlayers(); ++i )
 		{
 			engine->ServerCommand( UTIL_VarArgs( "kickid %d\n", defendingTeam->GetPlayer(i)->GetUserID() ) );
@@ -17065,7 +17065,7 @@ bool CTFGameRules::CanPlayerChooseClass( CBasePlayer *pPlayer, int iClass )
 		return true;
 
 	int iTeamClassCount = 0;
-	for ( int iPlayer = 0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
+	for ( intp iPlayer = 0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
 	{
 		CTFPlayer *pTFPlayer = ToTFPlayer( pTeam->GetPlayer( iPlayer ) );
 		if ( pTFPlayer && pTFPlayer != pPlayer && pTFPlayer->GetPlayerClass()->GetClassIndex() == iClass )

@@ -6757,7 +6757,7 @@ void C_TFPlayer::AvoidPlayers( CUserCmd *pCmd )
 	float flAvoidRadius = 0.0f;
 
 	Vector vecAvoidCenter, vecAvoidMin, vecAvoidMax;
-	for ( int i = 0; i < pTeam->GetNumPlayers(); ++i )
+	for ( intp i = 0; i < pTeam->GetNumPlayers(); ++i )
 	{
 		C_TFPlayer *pAvoidPlayer = static_cast< C_TFPlayer * >( pTeam->GetPlayer( i ) );
 		if ( pAvoidPlayer == NULL )

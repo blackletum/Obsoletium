@@ -1793,7 +1793,7 @@ ConVar cl_autohelp(
 		{
 			CTeam *pTeam = GetGlobalTeam( iTeam );
 
-			for ( int iPlayer=0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
+			for ( intp iPlayer=0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
 			{
 				CCSPlayer *pPlayer = ToCSPlayer( pTeam->GetPlayer( iPlayer ) );
 				Assert( pPlayer );
@@ -4281,7 +4281,7 @@ ConVar cl_autohelp(
 	static bool IsClanTeam( CTeam *pTeam )
 	{
 		uint32 iTeamClan = 0;
-		for ( int iPlayer = 0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
+		for ( intp iPlayer = 0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
 		{
 			CBasePlayer *pPlayer = pTeam->GetPlayer( iPlayer );
 			if ( !pPlayer )
@@ -4338,7 +4338,7 @@ ConVar cl_autohelp(
 			{
 				CTeam *pTeam = GetGlobalTeam( iWinnerTeam );
 
-				for ( int iPlayer=0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
+				for ( intp iPlayer=0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
 				{
 					CCSPlayer *pPlayer = ToCSPlayer( pTeam->GetPlayer( iPlayer ) );
 					Assert( pPlayer );
@@ -4355,7 +4355,7 @@ ConVar cl_autohelp(
 			{
 				CTeam *pTeam = GetGlobalTeam( iWinnerTeam );
 
-				for ( int iPlayer=0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
+				for ( intp iPlayer=0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
 				{
 					CCSPlayer *pPlayer = ToCSPlayer( pTeam->GetPlayer( iPlayer ) );
 					Assert( pPlayer );
@@ -4372,7 +4372,7 @@ ConVar cl_autohelp(
 			{
 				CTeam *pTeam = GetGlobalTeam( iWinnerTeam );
 
-				for ( int iPlayer=0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
+				for ( intp iPlayer=0; iPlayer < pTeam->GetNumPlayers(); iPlayer++ )
 				{
 					CCSPlayer *pPlayer = ToCSPlayer( pTeam->GetPlayer( iPlayer ) );
 					Assert( pPlayer );
@@ -4389,7 +4389,7 @@ ConVar cl_autohelp(
 				 losingTeam && losingTeam->GetNumPlayers() - ignoreCount >= AchievementConsts::DefaultMinOpponentsForAchievement &&
 				 IsClanTeam( pWinningTeam ) && IsClanTeam( losingTeam ) )
 			{
-				for ( int iPlayer=0; iPlayer < pWinningTeam->GetNumPlayers(); iPlayer++ )
+				for ( intp iPlayer=0; iPlayer < pWinningTeam->GetNumPlayers(); iPlayer++ )
 				{
 					CCSPlayer *pPlayer = ToCSPlayer( pWinningTeam->GetPlayer( iPlayer ) );
 					if ( !pPlayer )

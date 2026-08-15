@@ -983,7 +983,7 @@ bool CTFBotSpawner::Spawn( const Vector &rawHere, EntityHandleVector_t *result )
 
 	// find dead bot we can re-use
 	CTeam *deadTeam = GetGlobalTeam( TEAM_SPECTATOR );
-	for( int i=0; i<deadTeam->GetNumPlayers(); ++i )
+	for( intp i=0; i<deadTeam->GetNumPlayers(); ++i )
 	{
 		if ( !deadTeam->GetPlayer(i)->IsBot() )
 			continue;
