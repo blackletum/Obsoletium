@@ -1667,9 +1667,9 @@ void CElementPropertiesTreeInternal::OnSortByName()
 
 		bRefreshNeeded = true;
 		CDmElement **pArray = stackallocT( CDmElement*, nCount );
-		for ( intp i = 0; i < nCount; ++i )
+		for ( intp j = 0; j < nCount; ++j )
 		{
-			pArray[i] = elementArray[i];
+			pArray[j] = elementArray[j];
 		}
 
 		qsort( pArray, nCount, sizeof( CDmElement* ), ElementNameSortFunc );
@@ -1677,9 +1677,9 @@ void CElementPropertiesTreeInternal::OnSortByName()
 		elementArray.RemoveAll();
 		elementArray.AddMultipleToTail( nCount );
 
-		for ( intp i = 0; i < nCount; ++i )
+		for ( intp j = 0; j < nCount; ++j )
 		{
-			elementArray.Set( i, pArray[i] );
+			elementArray.Set( j, pArray[j] );
 		}
 	}
 
@@ -1820,8 +1820,8 @@ bool CElementPropertiesTreeInternal::BuildExpansionListToFindElement_R(
 			intp idx = nAttributes - 1;
 			for ( CDmAttribute *attribute = element->FirstAttribute(); attribute; attribute = attribute->NextAttribute(), --idx )
 			{
-				const char *attributeName = attribute->GetName();
-				if ( V_strieq( attributeName, sr.attributeName.Get() ) )
+				const char *innerAttributeName = attribute->GetName();
+				if ( V_strieq( innerAttributeName, sr.attributeName.Get() ) )
 				{
 					expandIndices.AddToTail( idx );
 					break;
@@ -1834,10 +1834,10 @@ bool CElementPropertiesTreeInternal::BuildExpansionListToFindElement_R(
 	intp idx = nAttributes - 1;
 	for ( CDmAttribute *attribute = element->FirstAttribute(); attribute; attribute = attribute->NextAttribute(), --idx )
 	{
-		const char *attributeName = attribute->GetName();
+		const char *innerAttributeName = attribute->GetName();
 		if ( attribute->GetType() == AT_ELEMENT )
 		{
-			if ( !BuildExpansionListToFindElement_R( visited, depth + 1, sr, element, attribute->GetValueElement<CDmElement>(), attributeName, -1, expandIndices ) )
+			if ( !BuildExpansionListToFindElement_R( visited, depth + 1, sr, element, attribute->GetValueElement<CDmElement>(), innerAttributeName, -1, expandIndices ) )
 			{
 				expandIndices.AddToTail( idx );
 				return false;
@@ -1850,7 +1850,7 @@ bool CElementPropertiesTreeInternal::BuildExpansionListToFindElement_R(
 			intp c = elementArray.Count();
 			for ( intp i = 0; i < c; ++i )
 			{
-				if ( !BuildExpansionListToFindElement_R( visited, depth + 1, sr, element, elementArray[ i ], attributeName, i, expandIndices ) )
+				if ( !BuildExpansionListToFindElement_R( visited, depth + 1, sr, element, elementArray[ i ], innerAttributeName, i, expandIndices ) )
 				{
 					expandIndices.AddToTail( i );
 					expandIndices.AddToTail( idx );

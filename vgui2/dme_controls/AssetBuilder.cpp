@@ -1080,8 +1080,8 @@ void CAssetBuilder::OnOpenContextMenu( KeyValues *kv )
 	bool bHasValidSourceFile = false;
 	if ( nCount == 1 && nItemID != -1 )
 	{
-		KeyValues *kv = m_pSourcesList->GetItem( nItemID );
-		CDmeSource *pSource = GetElementKeyValue< CDmeSource >( kv, "dmeSource" );
+		KeyValues *kvItemId = m_pSourcesList->GetItem( nItemID );
+		CDmeSource *pSource = GetElementKeyValue< CDmeSource >( kvItemId, "dmeSource" );
 		if ( pSource )
 		{
 			bHasValidSourceFile = pSource->GetRelativeFileName()[0] != 0;
