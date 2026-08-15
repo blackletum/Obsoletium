@@ -1980,7 +1980,7 @@ public:
 
 		CEntList list;
 		list.m_pClosest = NULL;
-		list.m_flClosestDist = FLT_MAX;
+		list.m_flClosestDist = std::numeric_limits<vec_t>::max();
 		g_pEngineTraceServer->EnumerateEntities( MainViewOrigin() - Vector( 200, 200, 200 ), MainViewOrigin() + Vector( 200, 200, 200 ), &list );
 
 		if ( !list.m_pClosest )

@@ -1369,7 +1369,8 @@ int GetScreenAspectMode( int width, int height )
 	float flAspectRatio = (float)width / (float)height;
 
 	// Just find the closest ratio
-	float flClosestAspectRatioDist = 99999.0f;
+	// dimhotepus: Use float max as start.
+	float flClosestAspectRatioDist = std::numeric_limits<vec_t>::max();
 	int nClosestAspectCode = ASPECT_4x3;
 	for ( auto &&ram : g_RatioToAspectModes )
 	{

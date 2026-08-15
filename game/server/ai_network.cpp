@@ -206,7 +206,8 @@ int CAI_Network::ListNodesInBox( CNodeList &list, int maxListCount, const Vector
 	
 	// NOTE: maxListCount must be > 0 or this will crash
 	bool full = false;
-	float flClosest = 1000000.0 * 1000000;
+	// dimhotepus: Set to float max.
+	float flClosest = std::numeric_limits<float>::max();
 	int closest = 0;
 
 // UNDONE: Store the nodes in a tree and query the tree instead of the entire list!!!
