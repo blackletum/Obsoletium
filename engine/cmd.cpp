@@ -588,7 +588,9 @@ void Cmd_Exec_f( const CCommand &args )
 		return;
 	}
 	
-	const char *pPathID = "MOD";
+	// dimhotepus: MOD -> *. We need to lookup not only in MOD, but in platform, too.
+	// dimhotepus: * allows to find valve.rc in platform vpks.
+	const char *pPathID = "*";
 	const char *szFile = args[1];
 
 	V_sprintf_safe( fileName, "//%s/cfg/%s", pPathID, szFile );
