@@ -122,7 +122,7 @@ Navigation_t CAI_Pathfinder::ComputeWaypointType( CAI_Node **ppNodes, int parent
 			if ( !moveTypeBits && linkMoveTypeBits == bits_CAP_MOVE_JUMP )
 			{
 				Assert( pNode->GetHint() && pNode->GetHint()->HintType() == HINT_JUMP_OVERRIDE );
-				ppNodes[destID]->Lock(0.3);
+				ppNodes[destID]->Lock(0.3f);
 				moveTypeBits = linkMoveTypeBits;
 			}
 			Navigation_t linkType = MoveBitsToNavType( moveTypeBits );

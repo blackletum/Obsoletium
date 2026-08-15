@@ -1294,7 +1294,7 @@ CBaseAnimating *CreateServerRagdollSubmodel( CBaseAnimating *pOwner, const char 
 
 	memcpy( pBoneToWorldNext, pBoneToWorld, sizeof(pBoneToWorld) );
 
-	pRagdoll->InitRagdoll( vec3_origin, -1, vec3_origin, pBoneToWorld, pBoneToWorldNext, 0.1, collisionGroup, true );
+	pRagdoll->InitRagdoll( vec3_origin, -1, vec3_origin, pBoneToWorld, pBoneToWorldNext, 0.1f, collisionGroup, true );
 	return pRagdoll;
 }
 
@@ -1588,7 +1588,7 @@ CRagdollProp *CreateServerRagdollAttached( CBaseAnimating *pAnimating, const Vec
 	pRagdoll->InitRagdollAnimation();
 	matrix3x4_t pBoneToWorld[MAXSTUDIOBONES];
 	pAnimating->SetupBones( pBoneToWorld, BONE_USED_BY_ANYTHING );
-	pRagdoll->InitRagdollAttached( pAttached, vecForce, forceBone, pBoneToWorld, pBoneToWorld, 0.1, collisionGroup, pParentEntity, boneAttach, boneOrigin, parentBoneAttach, originAttached );
+	pRagdoll->InitRagdollAttached( pAttached, vecForce, forceBone, pBoneToWorld, pBoneToWorld, 0.1f, collisionGroup, pParentEntity, boneAttach, boneOrigin, parentBoneAttach, originAttached );
 	
 	return pRagdoll;
 }

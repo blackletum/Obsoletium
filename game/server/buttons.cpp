@@ -1393,7 +1393,7 @@ void CMomentaryRotButton::UpdateSelf( float value, bool bPlaySound )
 	// Set our move clock to 0.1 seconds in the future so we stop spinning unless we are
 	// used again before then.
 	//
-	SetMoveDoneTime( 0.1 );
+	SetMoveDoneTime( 0.1f );
 
 	//
 	// If we hit the end, zero our avelocity and snap to the end angles.

@@ -63,8 +63,8 @@ extern CAI_TimedSemaphore g_AIFoesTalkSemaphore;
 // Constants
 
 
-constexpr inline float AIS_DEF_MIN_DELAY 	= 2.8; // Minimum amount of time an NPCs will wait after someone has spoken before considering speaking again
-constexpr inline float AIS_DEF_MAX_DELAY 	= 3.2; // Maximum amount of time an NPCs will wait after someone has spoken before considering speaking again
+constexpr inline float AIS_DEF_MIN_DELAY 	= 2.8f; // Minimum amount of time an NPCs will wait after someone has spoken before considering speaking again
+constexpr inline float AIS_DEF_MAX_DELAY 	= 3.2f; // Maximum amount of time an NPCs will wait after someone has spoken before considering speaking again
 constexpr inline float AIS_NO_DELAY  		= 0;
 constexpr inline soundlevel_t AIS_DEF_SNDLVL 	 	= SNDLVL_TALKING;
 #define AI_NULL_CONCEPT NULL

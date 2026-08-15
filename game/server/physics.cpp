@@ -2237,11 +2237,11 @@ void CCollisionEvent::RestoreDamageInflictorState( IPhysicsObject *pInflictor )
 				massRatio = clamp( massRatio, 0.1f, 10.0f );
 				if ( massRatio < 1 )
 				{
-					velocityBlend = RemapVal( massRatio, 0.1, 1, 0, 0.5 );
+					velocityBlend = RemapVal( massRatio, 0.1f, 1, 0, 0.5f );
 				}
 				else
 				{
-					velocityBlend = RemapVal( massRatio, 1.0, 10, 0.5, 1 );
+					velocityBlend = RemapVal( massRatio, 1.0f, 10, 0.5f, 1 );
 				}
 			}
 			RestoreDamageInflictorState( index, velocityBlend );

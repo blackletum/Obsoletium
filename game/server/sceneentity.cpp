@@ -2978,7 +2978,7 @@ void CSceneEntity::StartEvent( float currenttime, CChoreoScene *scene, CChoreoEv
 
 				hudtextparms_s tTextParam;
 				tTextParam.x			= -1;
-				tTextParam.y			= 0.65;
+				tTextParam.y			= 0.65f;
 				tTextParam.effect		= 0;
 				tTextParam.r1			= 255;
 				tTextParam.g1			= 170;
@@ -2990,7 +2990,7 @@ void CSceneEntity::StartEvent( float currenttime, CChoreoScene *scene, CChoreoEv
 				tTextParam.a2			= 255;
 				tTextParam.fadeinTime	= 0;
 				tTextParam.fadeoutTime	= 0;
-				tTextParam.holdTime		= 3.1;
+				tTextParam.holdTime		= 3.1f;
 				tTextParam.fxTime		= 0;
 				tTextParam.channel		= 1;
 				UTIL_HudMessageAll( tTextParam, pszText );

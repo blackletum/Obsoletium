@@ -132,7 +132,7 @@ void CLogicCompareInteger::InputCompareValues( inputdata_t &inputdata )
 // Spawnflags and others constants.
 //
 constexpr inline int SF_TIMER_UPDOWN = 1;
-constexpr inline float LOGIC_TIMER_MIN_INTERVAL = 0.01;
+constexpr inline float LOGIC_TIMER_MIN_INTERVAL = 0.01f;
 
 
 class CTimerEntity : public CLogicalEntity

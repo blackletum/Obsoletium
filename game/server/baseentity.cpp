@@ -984,18 +984,18 @@ void CBaseEntity::DrawDebugGeometryOverlays(void)
 			radius *= sv_vehicle_autoaim_scale.GetFloat();
 		}
 
-		NDebugOverlay::Line( vecCenter, vecCenter + vecRight * radius, r, g, b, true, 0.1 );
-		NDebugOverlay::Line( vecCenter, vecCenter - vecRight * radius, r, g, b, true, 0.1 );
-		NDebugOverlay::Line( vecCenter, vecCenter + vecUp * radius, r, g, b, true, 0.1 );
-		NDebugOverlay::Line( vecCenter, vecCenter - vecUp * radius, r, g, b, true, 0.1 );
+		NDebugOverlay::Line( vecCenter, vecCenter + vecRight * radius, r, g, b, true, 0.1f );
+		NDebugOverlay::Line( vecCenter, vecCenter - vecRight * radius, r, g, b, true, 0.1f );
+		NDebugOverlay::Line( vecCenter, vecCenter + vecUp * radius, r, g, b, true, 0.1f );
+		NDebugOverlay::Line( vecCenter, vecCenter - vecUp * radius, r, g, b, true, 0.1f );
 
 		vecDiag = vecRight + vecUp;
 		VectorNormalize( vecDiag );
-		NDebugOverlay::Line( vecCenter - vecDiag * radius, vecCenter + vecDiag * radius, r, g, b, true, 0.1 );
+		NDebugOverlay::Line( vecCenter - vecDiag * radius, vecCenter + vecDiag * radius, r, g, b, true, 0.1f );
 
 		vecDiag = vecRight - vecUp;
 		VectorNormalize( vecDiag );
-		NDebugOverlay::Line( vecCenter - vecDiag * radius, vecCenter + vecDiag * radius, r, g, b, true, 0.1 );
+		NDebugOverlay::Line( vecCenter - vecDiag * radius, vecCenter + vecDiag * radius, r, g, b, true, 0.1f );
 	}
 }
 

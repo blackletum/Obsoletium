@@ -941,16 +941,16 @@ float CBaseAnimating::SequenceDuration( CStudioHdr *pStudioHdr, int iSequence )
 	if ( !pStudioHdr )
 	{
 		DevWarning( 2, "CBaseAnimating::SequenceDuration( %d ) NULL pstudiohdr on %s!\n", iSequence, GetClassname() );
-		return 0.1;
+		return 0.1f;
 	}
 	if ( !pStudioHdr->SequencesAvailable() )
 	{
-		return 0.1;
+		return 0.1f;
 	}
 	if (iSequence >= pStudioHdr->GetNumSeq() || iSequence < 0 )
 	{
 		DevWarning( 2, "CBaseAnimating::SequenceDuration( %d ) out of range\n", iSequence );
-		return 0.1;
+		return 0.1f;
 	}
 
 	return Studio_Duration( pStudioHdr, iSequence, GetPoseParameterArray() );
@@ -1886,7 +1886,7 @@ void CBaseAnimating::SetupBones( matrix3x4_t *pBoneToWorld, int boneMask )
 			RemoveEFlags( EFL_SETTING_UP_BONES );
 			if (ai_setupbones_debug.GetBool())
 			{
-				DrawRawSkeleton( pBoneToWorld, boneMask, true, 0.11 );
+				DrawRawSkeleton( pBoneToWorld, boneMask, true, 0.11f );
 			}
 			return;
 		}
@@ -1906,7 +1906,7 @@ void CBaseAnimating::SetupBones( matrix3x4_t *pBoneToWorld, int boneMask )
 	if (ai_setupbones_debug.GetBool())
 	{
 		// Msg("%s:%s:%s (%x)\n", GetClassname(), GetDebugName(), STRING(GetModelName()), boneMask );
-		DrawRawSkeleton( pBoneToWorld, boneMask, true, 0.11 );
+		DrawRawSkeleton( pBoneToWorld, boneMask, true, 0.11f );
 	}
 	RemoveEFlags( EFL_SETTING_UP_BONES );
 }

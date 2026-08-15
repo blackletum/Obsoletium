@@ -492,7 +492,7 @@ public:
 					m_flNextTeleportTime = gpGlobals->curtime + 0.35F;
 
 					color32_s clr = { 0,0,0,255 };
-					UTIL_ScreenFade( pPlayer, clr, 0.3, 0, FFADE_OUT | FFADE_PURGE | FFADE_STAYOUT );
+					UTIL_ScreenFade( pPlayer, clr, 0.3f, 0, FFADE_OUT | FFADE_PURGE | FFADE_STAYOUT );
 				}
 				else if ( m_iTeleportStage == TELEPORT_TELEPORT )
 				{
@@ -510,7 +510,7 @@ public:
 					m_flNextTeleportTime = gpGlobals->curtime + 0.25F;
 
 					color32_s clr = { 0,0,0,255 };
-					UTIL_ScreenFade( pPlayer, clr, 0.3, 0, FFADE_IN | FFADE_PURGE );
+					UTIL_ScreenFade( pPlayer, clr, 0.3f, 0, FFADE_IN | FFADE_PURGE );
 				}
 			}
 		}

@@ -1445,10 +1445,10 @@ void UTIL_EmitSoundSuit(edict_t *entity, const char *sample)
 	// If friendlies are talking, reduce the volume of the suit
 	if ( !g_AIFriendliesTalkSemaphore.IsAvailable( GetContainingEntity( entity ) ) )
 	{
-		fvol *= 0.3;
+		fvol *= 0.3f;
 	}
 
-	if (fvol > 0.05)
+	if (fvol > 0.05f)
 	{
 		CPASAttenuationFilter filter( GetContainingEntity( entity ) );
 		filter.MakeReliable();
@@ -1479,10 +1479,10 @@ int UTIL_EmitGroupIDSuit(edict_t *entity, int isentenceg)
 	// If friendlies are talking, reduce the volume of the suit
 	if ( !g_AIFriendliesTalkSemaphore.IsAvailable( GetContainingEntity( entity ) ) )
 	{
-		fvol *= 0.3;
+		fvol *= 0.3f;
 	}
 
-	if (fvol > 0.05)
+	if (fvol > 0.05f)
 		sentenceIndex = SENTENCEG_PlayRndI(entity, isentenceg, fvol, SNDLVL_NORM, 0, pitch);
 
 	return sentenceIndex;
@@ -1503,10 +1503,10 @@ int UTIL_EmitGroupnameSuit(edict_t *entity, const char *groupname)
 	// If friendlies are talking, reduce the volume of the suit
 	if ( !g_AIFriendliesTalkSemaphore.IsAvailable( GetContainingEntity( entity ) ) )
 	{
-		fvol *= 0.3;
+		fvol *= 0.3f;
 	}
 
-	if (fvol > 0.05)
+	if (fvol > 0.05f)
 		sentenceIndex = SENTENCEG_PlayRndSz(entity, groupname, fvol, SNDLVL_NORM, 0, pitch);
 
 	return sentenceIndex;

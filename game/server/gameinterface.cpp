@@ -1026,8 +1026,8 @@ bool CServerGameDLL::LevelInit( const char *pMapName, char const *pMapEntities, 
 			CBaseEntity *pAutosave = CBaseEntity::Create( "logic_autosave", vec3_origin, vec3_angle, NULL );
 			if ( pAutosave )
 			{
-				g_EventQueue.AddEvent( pAutosave, "Save", 1.0, NULL, NULL );
-				g_EventQueue.AddEvent( pAutosave, "Kill", 1.1, NULL, NULL );
+				g_EventQueue.AddEvent( pAutosave, "Save", 1.0f, NULL, NULL );
+				g_EventQueue.AddEvent( pAutosave, "Kill", 1.1f, NULL, NULL );
 			}
 		}
 	}

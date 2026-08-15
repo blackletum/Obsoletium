@@ -1476,8 +1476,8 @@ void CAI_NetworkEditTools::SetDebugBits(const char *ainet_name,int debug_bit)
 void CAI_NetworkEditTools::DrawEditInfoOverlay(void)
 {
 	hudtextparms_s tTextParam;
-	tTextParam.x			= 0.8;
-	tTextParam.y			= 0.8;
+	tTextParam.x			= 0.8f;
+	tTextParam.y			= 0.8f;
 	tTextParam.effect		= 0;
 	tTextParam.r1			= 255;
 	tTextParam.g1			= 255;
@@ -2511,7 +2511,7 @@ void CAI_NetworkBuilder::InitGroundNodePosition(CAI_Network *pNetwork, CAI_Node 
 		maxs.z = mins.z;
 
 		// Add an epsilon for cast
-		origin.z += 0.1;
+		origin.z += 0.1f;
 
 		// shift up so bottom of box is at center of node
 		origin.z -= mins.z;
@@ -2862,7 +2862,7 @@ void CAI_NetworkBuilder::InitNeighbors(CAI_Network *pNetwork, CAI_Node *pNode)
 			Vector	vec2DirToTestNode = ( pTestNode->GetOrigin() - pNode->GetOrigin() ); 
 			float	flDistToTestNode  = VectorNormalize( vec2DirToTestNode );
 
-			float	tolerance = 0.92388;	// 45 degrees
+			constexpr float	tolerance = 0.92388f;	// 45 degrees
 
 			if ( DotProduct ( vec2DirToCheckNode, vec2DirToTestNode ) >= tolerance ) 
 			{
@@ -2899,11 +2899,11 @@ static bool IsInLineForClimb( const Vector &srcPos, const Vector &srcFacing, con
 	VectorNormalize( normSrcFacing );
 	VectorNormalize( normDestFacing );
 
-	Assert( VectorsAreEqual( srcFacing, normSrcFacing, 0.01 ) && VectorsAreEqual( destFacing, normDestFacing, 0.01 ) );
+	Assert( VectorsAreEqual( srcFacing, normSrcFacing, 0.01f ) && VectorsAreEqual( destFacing, normDestFacing, 0.01f ) );
 #endif
 
 	// If they are not facing the same way...
-	if ( 1 - srcFacing.Dot( destFacing ) > 0.01 )
+	if ( 1 - srcFacing.Dot( destFacing ) > 0.01f )
 		return false;
 
 	// If they aren't in line along the facing...
@@ -2917,9 +2917,9 @@ static bool IsInLineForClimb( const Vector &srcPos, const Vector &srcFacing, con
 
 	float fabsCos = fabs( srcFacing.Dot( vecDelta ) );
 
-	constexpr float CosAngLadderStairs = 0.4472; // rise 2 & run 1
+	constexpr float CosAngLadderStairs = 0.4472f; // rise 2 & run 1
 
-	if ( fabsCos > 0.05 && fabs( fabsCos - CosAngLadderStairs ) > 0.05 )
+	if ( fabsCos > 0.05f && fabs( fabsCos - CosAngLadderStairs ) > 0.05f )
 		return false;
 
 	// *************************** --------------------------------
