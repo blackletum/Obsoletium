@@ -578,7 +578,7 @@ void CL_DispatchSound( const SoundInfo_t &sound )
 			pSentenceName = "";
 		}
 
-		V_snprintf( name, sizeof( name ), "%c%s", CHAR_SENTENCE, pSentenceName );		
+		V_sprintf_safe( name, "%c%s", CHAR_SENTENCE, pSentenceName );
 		pSfx = S_DummySfx( name );
 	}
 	else
@@ -1020,7 +1020,7 @@ void CL_FullyConnected( void )
 				numIterations = 1;
 			}
 			char cmd[1024] = { 0 };
-			V_snprintf( cmd, sizeof( cmd ), "buildcubemaps %u\nquit\n", numIterations );
+			V_sprintf_safe( cmd, "buildcubemaps %u\nquit\n", numIterations );
 			Cbuf_AddText( cmd );
 		}
 		else if( CommandLine()->FindParm( "-navanalyze" ) )

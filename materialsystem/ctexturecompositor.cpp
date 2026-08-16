@@ -909,7 +909,7 @@ protected:
 		{
 			bool bFound = false;
 
-			V_snprintf( buffer, ssize( buffer ), "$selector%d", i );
+			V_sprintf_safe( buffer, "$selector%d", i );
 			IMaterialVar* pVar = m_pMaterial->FindVar( buffer, &bFound );
 			Assert(bFound);
 			if ( i < m_Parameters.m_Select.Count() )
@@ -1308,7 +1308,7 @@ private:
 			if ( r_texcomp_dump.GetInt() == 2 )
 			{
 				char buffer[128];
-				V_snprintf( buffer, ssize(buffer), "composite_%s_result_%02d.tga", _comp->GetName().Get(), s_nDumpCount++ );
+				V_sprintf_safe( buffer, "composite_%s_result_%02d.tga", _comp->GetName().Get(), s_nDumpCount++ );
 				GetFirstChild()->GetResult().m_pRenderTarget->SaveToFile( buffer );
 			}
 #endif
@@ -1790,7 +1790,7 @@ void CTCStage::Render( ITexture* _destRT, IMaterial* _mat, const CUtlVector<CTCS
 			            ? stageParams.m_pTexture 
 						: stageParams.m_pRenderTarget;
 
-		V_snprintf( buffer, ssize( buffer ), "$srctexture%d", i );
+		V_sprintf_safe( buffer, "$srctexture%zd", i );
 
 		// Set the texture
 		IMaterialVar* var = _mat->FindVar( buffer, &bFound );
@@ -1799,13 +1799,13 @@ void CTCStage::Render( ITexture* _destRT, IMaterial* _mat, const CUtlVector<CTCS
 		varsToClean.AddToTail( var );
 
 		// And the levels parameters
-		V_snprintf( buffer, ssize(buffer), "$texadjustlevels%d", i );
+		V_sprintf_safe( buffer, "$texadjustlevels%zd", i );
 		var = _mat->FindVar( buffer, &bFound );
 		Assert(bFound);
 		var->SetVecValue( stageParams.m_fAdjustBlackPoint, stageParams.m_fAdjustWhitePoint, stageParams.m_fAdjustGamma );
 
 		// And the expected transform
-		V_snprintf( buffer, ssize(buffer), "$textransform%d", i );
+		V_sprintf_safe( buffer, "$textransform%zd", i );
 		var = _mat->FindVar( buffer, &bFound );
 		Assert(bFound);
 		var->SetMatrixValue( stageParams.m_mUvAdjust );
@@ -1838,12 +1838,12 @@ void CTCStage::Render( ITexture* _destRT, IMaterial* _mat, const CUtlVector<CTCS
 		{
 			if (_inputs[i].m_pTexture)
 			{
-				V_snprintf(buffer, ssize(buffer), "composite_%s_input_%02d_in%01d_%16x.tga", _comp->GetName().Get(), s_nDumpCount, i, (intp) this);
+				V_sprintf_safe(buffer, "composite_%s_input_%02d_in%01d_%16x.tga", _comp->GetName().Get(), s_nDumpCount, i, (intp) this);
 				_inputs[i].m_pTexture->SaveToFile(buffer);
 			}
 		}
 
-		V_snprintf(buffer, ssize(buffer), "composite_%s_result_%02d_%16x.tga", _comp->GetName().Get(), s_nDumpCount++, (intp) this);
+		V_sprintf_safe(buffer, "composite_%s_result_%02d_%16x.tga", _comp->GetName().Get(), s_nDumpCount++, (intp) this);
 		_destRT->SaveToFile(buffer);
 	}
 #endif

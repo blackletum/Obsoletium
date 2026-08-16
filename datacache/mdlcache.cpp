@@ -3518,7 +3518,7 @@ bool CMDLCache::PreloadModel( MDLHandle_t handle )
 
 	if ( bNeedsMDL )
 	{
-		V_snprintf( szNameOnDisk, sizeof( szNameOnDisk ), "%s%s.mdl", szFilename, GetPlatformExt() );
+		V_sprintf_safe( szNameOnDisk, "%s%s.mdl", szFilename, GetPlatformExt() );
 		loaderJob.m_pFilename = szNameOnDisk;
 		loaderJob.m_pContext2 = (void *)ModelParts_t::BUFFER_MDL;
 		g_pQueuedLoader->AddJob( &loaderJob );
@@ -3529,7 +3529,7 @@ bool CMDLCache::PreloadModel( MDLHandle_t handle )
 	{
 		// vtx extensions are .xxx.vtx, need to re-form as, ???.xxx.yyy.vtx
 		char szTempName[MAX_PATH];
-		V_snprintf( szNameOnDisk, sizeof( szNameOnDisk ), "%s%s", szFilename, GetVTXExtension() );
+		V_sprintf_safe( szNameOnDisk, "%s%s", szFilename, GetVTXExtension() );
 		V_StripExtension( szNameOnDisk, szTempName );
 		V_sprintf_safe( szNameOnDisk, "%s%s.vtx", szTempName, GetPlatformExt() );
 		loaderJob.m_pFilename = szNameOnDisk;
@@ -3540,7 +3540,7 @@ bool CMDLCache::PreloadModel( MDLHandle_t handle )
 
 	if ( bNeedsVVD )
 	{
-		V_snprintf( szNameOnDisk, sizeof( szNameOnDisk ), "%s%s.vvd", szFilename, GetPlatformExt() );
+		V_sprintf_safe( szNameOnDisk, "%s%s.vvd", szFilename, GetPlatformExt() );
 		loaderJob.m_pFilename = szNameOnDisk;
 		loaderJob.m_pContext2 = (void *)(intp)ModelParts_t::BUFFER_VVD;
 		g_pQueuedLoader->AddJob( &loaderJob );
@@ -3549,7 +3549,7 @@ bool CMDLCache::PreloadModel( MDLHandle_t handle )
 
 	if ( bNeedsPHY )
 	{
-		V_snprintf( szNameOnDisk, sizeof( szNameOnDisk ), "%s%s.phy", szFilename, GetPlatformExt() );
+		V_sprintf_safe( szNameOnDisk, "%s%s.phy", szFilename, GetPlatformExt() );
 		loaderJob.m_pFilename = szNameOnDisk;
 		loaderJob.m_pContext2 = (void *)(intp)ModelParts_t::BUFFER_PHY;
 		g_pQueuedLoader->AddJob( &loaderJob );

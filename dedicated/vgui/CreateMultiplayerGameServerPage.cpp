@@ -422,8 +422,9 @@ bool CCreateMultiplayerGameServerPage::LaunchOldDedicatedServer(
 
         char commandLine[1024 * 4];
         commandLine[0] = 0;
-        V_snprintf(commandLine, sizeof(commandLine),
-                   "\"%ssteam.exe\" -applaunch 205 -HiddenLaunch", steamDir);
+        V_sprintf_safe(commandLine,
+                       "\"%ssteam.exe\" -applaunch 205 -HiddenLaunch",
+                       steamDir);
 
         // Feed it all the parameters chosen in the UI so it doesn't redisplay
         // the UI.

@@ -282,7 +282,7 @@ bool CGameClient::ProcessFileCRCCheck( CLC_FileCRCCheck *msg )
 	}
 	else
 	{
-		V_snprintf( warningStr, sizeof( warningStr ), "Pure server: file [%s]\\%s does not match the server's file.", path, fileName );
+		V_sprintf_safe( warningStr, "Pure server: file [%s]\\%s does not match the server's file.", path, fileName );
 	}
 
 	// still ToDo:

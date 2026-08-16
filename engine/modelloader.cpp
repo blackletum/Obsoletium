@@ -2965,7 +2965,7 @@ class CResourcePreloadModel : public CResourcePreload
 				// create an anonymous job to perform i/o operation to mount the .ain
 				// the .ain gets claimed later
 				char szAINName[MAX_PATH] = { 0 };
-				V_snprintf( szAINName, sizeof( szAINName ), "maps/graphs/%s.360.ain", szLoadName );
+				V_sprintf_safe( szAINName, "maps/graphs/%s.360.ain", szLoadName );
 				LoaderJob_t loaderJobAIN;
 				loaderJobAIN.m_pFilename = szAINName;
 				loaderJobAIN.m_pPathID = "GAME";

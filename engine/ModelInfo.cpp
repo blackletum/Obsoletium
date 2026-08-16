@@ -316,7 +316,7 @@ model_t *CModelInfo::LookupDynamicModel( int i )
 			char fixupBuf[MAX_PATH];
 			if ( V_strnicmp( name, "models/", 7 ) != 0 && demoplayer && demoplayer->IsPlayingBack() && demoplayer->GetProtocolVersion() < PROTOCOL_VERSION_20 )
 			{
-				V_snprintf( fixupBuf, MAX_PATH, "models/%s", name );
+				V_sprintf_safe( fixupBuf, "models/%s", name );
 				name = fixupBuf;
 			}
 #endif

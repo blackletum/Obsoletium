@@ -277,7 +277,7 @@ void CMapListManager::RefreshList( void )
 
 		// Make full fileame (maps/foo.bsp) and map name (foo)
 		char szFileName[ MAX_QPATH ] = { 0 };
-		V_snprintf( szFileName, sizeof( szFileName ), "maps/%s", findfn );
+		V_sprintf_safe( szFileName, "maps/%s", findfn );
 
 		char szMapName[256] = { 0 };
 		V_strncpy( szMapName, findfn, sizeof( szMapName ) );
@@ -389,7 +389,7 @@ void CMapListManager::BuildList( void )
 
 		// Make full fileame (maps/foo.bsp) and map name (foo)
 		char szFileName[ MAX_QPATH ] = { 0 };
-		V_snprintf( szFileName, sizeof( szFileName ), "maps/%s", findfn );
+		V_sprintf_safe( szFileName, "maps/%s", findfn );
 
 		char szMapName[256] = { 0 };
 		V_strncpy( szMapName, findfn, sizeof( szMapName ) );

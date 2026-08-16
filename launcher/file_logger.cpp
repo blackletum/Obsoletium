@@ -74,8 +74,8 @@ void FileLogger::Init() {
 
   // game directory has not been established yet, must derive ourselves
   char path[MAX_PATH];
-  Q_snprintf(path, sizeof(path), "%s/%s", base_dir_,
-             command_line_->ParmValue("-game", "hl2"));
+  V_sprintf_safe(path, "%s/%s", base_dir_,
+                 command_line_->ParmValue("-game", "hl2"));
   Q_FixSlashes(path);
 
 #ifdef WIN32
@@ -86,8 +86,8 @@ void FileLogger::Init() {
 
   // create file to dump out to
   char directory[MAX_PATH];
-  V_snprintf(directory, sizeof(directory), "%s\\%s", full_game_path_.String(),
-             resource_listing_dir_.String());
+  V_sprintf_safe(directory, "%s\\%s", full_game_path_.String(),
+                 resource_listing_dir_.String());
 
   file_system_->CreateDirHierarchy(directory, "GAME");
 

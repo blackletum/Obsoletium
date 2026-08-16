@@ -203,7 +203,7 @@ void DTI_HookRecvDecoder( CRecvDecoder *pDecoder )
 			if ( parentArrayPropName )
 			{
 				char temp[256];
-				V_snprintf( temp, sizeof( temp ), "%s:%s", parentArrayPropName, pSendProp->GetName() );
+				V_sprintf_safe( temp, "%s:%s", parentArrayPropName, pSendProp->GetName() );
 				pTable->m_Props[i].m_Name.Set( temp );
 			}
 			else

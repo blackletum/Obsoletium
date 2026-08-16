@@ -879,7 +879,7 @@ void CBaseFileSystem::AddPackFiles( const char *pPath, const CUtlSymbol &pathID,
 	{
 		char pakfile[MAX_PATH];
 		char fullpath[MAX_PATH];
-		V_snprintf( pakfile, sizeof( pakfile ), PACK_NAME_FORMAT, i );
+		V_sprintf_safe( pakfile, PACK_NAME_FORMAT, i );
 		V_ComposeFileName( pPath, pakfile, fullpath );
 
 		struct _stat buf;

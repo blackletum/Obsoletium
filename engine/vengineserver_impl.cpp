@@ -1671,7 +1671,7 @@ class CVEngineServer22 : public CVEngineServer
 		// For users of the older interface, preserve here the old modelloader behavior of wrapping maps/%.bsp around
 		// the filename. This went away in newer interfaces since maps can now live in other places.
 		char szWrappedName[MAX_PATH] = { 0 };
-		V_snprintf( szWrappedName, sizeof( szWrappedName ), "maps/%s.bsp", filename );
+		V_sprintf_safe( szWrappedName, "maps/%s.bsp", filename );
 
 		return modelloader->Map_IsValid( szWrappedName );
 	}

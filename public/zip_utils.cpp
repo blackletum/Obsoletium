@@ -118,7 +118,7 @@ public:
 			{
 				pBuffer[strlen( pBuffer )-1] = '\0';
 			}
-			V_snprintf( tempFileName, sizeof( tempFileName ), "_%s.tmp", pBuffer );
+			V_sprintf_safe( tempFileName, "_%s.tmp", pBuffer );
 		}
 		else
 		{
@@ -192,7 +192,7 @@ public:
 			{
 				pBuffer[strlen( pBuffer )-1] = '\0';
 			}
-			V_snprintf( tempFileName, sizeof( tempFileName ), "_%s.tmp", pBuffer );
+			V_sprintf_safe( tempFileName, "_%s.tmp", pBuffer );
 		}
 		else
 		{

@@ -113,7 +113,7 @@ void askconnect_accept_f()
 	if ( IsAskConnectPanelActive( szHostName, sizeof( szHostName ) ) )
 	{
 		char szCommand[512];
-		V_snprintf( szCommand, sizeof( szCommand ), "connect %s redirect", szHostName );
+		V_sprintf_safe( szCommand, "connect %s redirect", szHostName );
 		Cbuf_AddText( szCommand );
 		HideAskConnectPanel();
 	}

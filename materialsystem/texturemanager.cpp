@@ -2420,7 +2420,7 @@ void CTextureManager::DebugPrintUsedTextures( void )
 		{
 			char buff[256];
 			const char *pName = m_TextureExcludes.GetElementName( i );
-			V_snprintf( buff, sizeof( buff ), "Excluded: %d '%s' \n", m_TextureExcludes[i], pName );
+			V_sprintf_safe( buff, "Excluded: %d '%s' \n", m_TextureExcludes[i], pName );
 	
 			// an excluded texture is valid, but forced tiny
 			if ( IsTextureLoaded( pName ) )

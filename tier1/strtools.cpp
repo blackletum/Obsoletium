@@ -1719,7 +1719,7 @@ void V_binarytohex( IN_BYTECAP(inputbytes) const byte *in, intp inputbytes, OUT_
 	for ( i = 0; i < inputbytes; i++ )
 	{
 		unsigned char c = in[i];
-		V_snprintf( doublet, sizeof( doublet ), "%02x", c );
+		V_sprintf_safe( doublet, "%02x", c );
 		V_strncat( out, doublet, outsize, COPY_ALL_CHARACTERS );
 	}
 }

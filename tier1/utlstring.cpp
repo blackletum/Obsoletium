@@ -273,8 +273,7 @@ CUtlString &CUtlString::operator+=( int rhs )
 CUtlString &CUtlString::operator+=( double rhs )
 {
 	char tmpBuf[ 64 ];	// How big can doubles be???  Dunno.
-	V_snprintf( tmpBuf, sizeof( tmpBuf ), "%lg", rhs );
-	tmpBuf[ sizeof( tmpBuf ) - 1 ] = '\0';
+	V_sprintf_safe( tmpBuf, "%lg", rhs );
 
 	return operator+=( tmpBuf );
 }

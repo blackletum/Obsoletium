@@ -2665,7 +2665,7 @@ bool	CShaderManager::LoadShaderCache( char *cacheName )
 		{
 			char	temp[1024];
 				
-			V_snprintf( temp, sizeof(temp), "vs-file %s vs-index %d", pVertexShaderName, nVertexShaderStaticIndex );
+			V_sprintf_safe( temp, "vs-file %s vs-index %d", pVertexShaderName, nVertexShaderStaticIndex );
 			CreateVertexShader( pVertexShaderName, nVertexShaderStaticIndex, temp );
 			
 			// this one should not fail
@@ -2682,7 +2682,7 @@ bool	CShaderManager::LoadShaderCache( char *cacheName )
 		{
 			char	temp[1024];
 			
-			V_snprintf( temp, sizeof(temp), "ps-file %s ps-index %d", pPixelShaderName, nPixelShaderStaticIndex );
+			V_sprintf_safe( temp, "ps-file %s ps-index %d", pPixelShaderName, nPixelShaderStaticIndex );
 			CreatePixelShader( pPixelShaderName, nPixelShaderStaticIndex, temp );
 			
 			// this one should not fail

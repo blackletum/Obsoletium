@@ -3346,7 +3346,7 @@ void CBaseEntity::OnRestore()
 	if ( GetFlags() & FL_FAKECLIENT )
 	{
 		char szMsg[256];
-		V_snprintf( szMsg, sizeof(szMsg), "\nInvalid save, unable to load. Please run \"map %s\" to restart this level manually\n\n", gpGlobals->mapname.ToCStr() );
+		V_sprintf_safe( szMsg, "\nInvalid save, unable to load. Please run \"map %s\" to restart this level manually\n\n", gpGlobals->mapname.ToCStr() );
 		Msg( "%s", szMsg );
 		
 		engine->ServerCommand("wait;wait;disconnect;showconsole\n");

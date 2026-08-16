@@ -369,7 +369,7 @@ template<typename T>
 static T OverrideVideoConfigFromCommandLine( const char *pCVarName, T curVal )
 {
 	char szOption[256];
-	V_snprintf( szOption, sizeof( szOption ), "+%s", pCVarName );
+	V_sprintf_safe( szOption, "+%s", pCVarName );
 	if ( CommandLine()->CheckParm( szOption ) )
 	{
 		T newVal = CommandLine()->ParmValue( szOption, curVal );
