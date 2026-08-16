@@ -889,7 +889,8 @@ void CBaseFileSystem::AddPackFiles( const char *pPath, const CUtlSymbol &pathID,
 		MEM_ALLOC_CREDIT();
 
 		pakNames.AddToTail( pakfile );
-		pakSizes.AddToTail( (int64)((unsigned int)buf.st_size) );
+		// dimhotepus: Correctly compute pak size.
+		pakSizes.AddToTail( (int64)buf.st_size );
 	}
 
 	// Add any zip files in the format zip1.zip ... zip0.zip
