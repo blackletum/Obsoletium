@@ -2284,35 +2284,45 @@ void KeyValues::RecursiveMergeKeyValues( KeyValues *baseKV )
 	}
 }
 
-static int s_nSteamDeckCached = -1;
+enum class SteamDeckStatus
+{
+	Unknown,
+	Not,
+	Yes
+};
+
+static SteamDeckStatus s_nSteamDeckCached = SteamDeckStatus::Unknown;
 
 // dimhotepus: Try add basic SteamDeck support.
 [[nodiscard]] bool IsSteamDeck()
 {
-	if (s_nSteamDeckCached == -1)
+	if (s_nSteamDeckCached != SteamDeckStatus::Unknown)
 	{
-		if ( CommandLine()->CheckParm( "-nogamepadui" ) != nullptr )
-		{
-			s_nSteamDeckCached = 0;
-		}
-		else
-		{
-			if ( CommandLine()->CheckParm( "-gamepadui" ) != nullptr )
-			{
-				s_nSteamDeckCached = 1;
-			}
-			else
-			{
-				char *deck = getenv("SteamDeck");
-
-				if ( deck == nullptr || *deck == 0 )
-					s_nSteamDeckCached = 0;
-				else
-					s_nSteamDeckCached = atoi(deck) != 0;
-			}
-		}
+		return s_nSteamDeckCached == SteamDeckStatus::Yes;
 	}
-	return s_nSteamDeckCached;
+
+	if ( CommandLine()->HasParm( "-gamepadui" ) )
+	{
+		s_nSteamDeckCached = SteamDeckStatus::Yes;
+		return true;
+	}
+
+	if ( CommandLine()->HasParm( "-nogamepadui" ) )
+	{
+		s_nSteamDeckCached = SteamDeckStatus::Not;
+		return false;
+	}
+
+	if ( const char *deck = getenv("SteamDeck"); Q_isempty( deck ) )
+	{
+		s_nSteamDeckCached = SteamDeckStatus::Not;
+	}
+	else
+	{
+		s_nSteamDeckCached = atoi(deck) != 0 ? SteamDeckStatus::Yes : SteamDeckStatus::Not;
+	}
+
+	return s_nSteamDeckCached == SteamDeckStatus::Yes;
 }
 
 //-----------------------------------------------------------------------------
