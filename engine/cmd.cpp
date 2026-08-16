@@ -636,7 +636,7 @@ void Cmd_Exec_f( const CCommand &args )
 
 	char buf[16384] = { 0 };
 	int len = 0;
-	char *f = (char *)COM_LoadStackFile( fileName, buf, sizeof( buf ), len );
+	char *f = (char *)COM_LoadStackFile( fileName, buf, len );
 	if ( !f )
 	{
 		ConMsg( "exec: couldn't exec %s\n", szFile );

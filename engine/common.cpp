@@ -948,7 +948,7 @@ void COM_InitFilesystem( const char *pFullModPath )
 			}
 		}
 
-		if ( !Q_isempty(language) && Q_stricmp(language, "english") )
+		if ( !Q_isempty(language) && !V_strieq(language, "english") )
 		{
 			initInfo.m_pLanguage = language;
 		}
