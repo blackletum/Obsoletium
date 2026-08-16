@@ -139,8 +139,8 @@ void CPhysicsEnvironment::PostRestore()
 void CVPhysPtrSaveRestoreOps::Save( const SaveRestoreFieldInfo_t &fieldInfo, ISave *pSave )
 {
 	const char *pField = (const char *)fieldInfo.pField;
-	int nObjects = fieldInfo.pTypeDesc->fieldSize;
-	for ( int i = 0; i < nObjects; i++ )
+	const unsigned short nObjects{fieldInfo.pTypeDesc->fieldSize};
+	for ( unsigned short i = 0; i < nObjects; i++ )
 	{
 		pSave->WriteData( pField, sizeof(void*) );
 		pField += sizeof(void*);
@@ -159,9 +159,9 @@ void CVPhysPtrSaveRestoreOps::PreRestore()
 void CVPhysPtrSaveRestoreOps::Restore( const SaveRestoreFieldInfo_t &fieldInfo, IRestore *pRestore )
 {
 	void **ppField = (void **)fieldInfo.pField;
-	int nObjects = fieldInfo.pTypeDesc->fieldSize;
+	const unsigned short nObjects{fieldInfo.pTypeDesc->fieldSize};
 
-	for ( int i = 0; i < nObjects; i++ )
+	for ( unsigned short i = 0; i < nObjects; i++ )
 	{
 		pRestore->ReadData( (char *)ppField, sizeof(void*), 0 );
 
