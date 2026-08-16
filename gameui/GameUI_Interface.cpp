@@ -495,7 +495,8 @@ void CGameUI::PlayGameStartupSound()
 			engine->ClientCmd_Unrestricted( found );
 		}
 
-		fileNames.PurgeAndDeleteElements();
+		// dimhotepus: Do not leak char array.
+		fileNames.PurgeAndDeleteElementsArray();
 	}
 }
 
