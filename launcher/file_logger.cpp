@@ -148,7 +148,7 @@ void FileLogger::Shutdown() {
 void FileLogger::LogAllResources(const char *line) {
   if (all_logs_file_ != FILESYSTEM_INVALID_HANDLE) {
     file_system_->Write("\"", 1, all_logs_file_);
-    file_system_->Write(line, Q_strlen(line), all_logs_file_);
+    file_system_->Write(line, static_cast<int>(Q_strlen(line)), all_logs_file_);
     file_system_->Write("\"\n", 2, all_logs_file_);
   }
 }

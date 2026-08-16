@@ -35,7 +35,7 @@ bool SaveResourceListing(IFileSystem *file_system,
 
     for (int i = list.FirstInorder(); i != list.InvalidIndex();
          i = list.NextInorder(i)) {
-      file_system->Write(list[i].String(), V_strlen(list[i].String()), fh);
+      file_system->Write(list[i].String(), static_cast<int>(V_strlen(list[i].String())), fh);
       file_system->Write("\n", 1, fh);
     }
 
