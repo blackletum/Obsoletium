@@ -863,6 +863,8 @@ public:
 	// dumps info about the object to Msg()
 	virtual void			OutputDebugInfo() const = 0;
 
+	// dimhotepus: TF2 backport.
+	[[nodiscard]] virtual float	GetBuoyancyRatio() const = 0;
 };
 
 
