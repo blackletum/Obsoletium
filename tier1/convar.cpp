@@ -400,7 +400,7 @@ bool CCommand::Tokenize( const char *pCommand, const characterset_t *pBreakSet )
 		char *pArgvBuf = &m_pArgvBuffer[nArgvBufferSize];
 		intp nMaxLen = COMMAND_MAX_LENGTH - nArgvBufferSize;
 		intp nStartGet = bufParse.TellGet();
-		intp	nSize = bufParse.ParseToken( pBreakSet, pArgvBuf, nMaxLen );
+		intp nSize = bufParse.ParseToken( pBreakSet, pArgvBuf, nMaxLen );
 		if ( nSize < 0 )
 			break;
 
@@ -787,7 +787,6 @@ void ConVar::ChangeStringValue( const char *tempVal, float flOldValue )
 	if ( tempVal )
 	{
 		intp len = Q_strlen(tempVal) + 1;
-
 		if ( len > m_StringLength)
 		{
 			delete[] m_pszString;
