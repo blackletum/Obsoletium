@@ -6,11 +6,8 @@
 // $Date:         $
 // $NoKeywords: $
 //=============================================================================//
-#if !defined( HOST_H )
-#define HOST_H
-#ifdef _WIN32
-#pragma once
-#endif
+#ifndef SE_ENGINE_HOST_H
+#define SE_ENGINE_HOST_H
 
 #include "convar.h"
 #include "steam/steamclientpublic.h"
@@ -176,5 +173,5 @@ extern EUniverse GetSteamUniverse();
 #define STEAMREMOTESTORAGE_CLOUD_OFF	0
 #define STEAMREMOTESTORAGE_CLOUD_ON		1
 
-#endif // HOST_H
+#endif // !SE_ENGINE_HOST_H
 
