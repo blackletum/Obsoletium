@@ -191,9 +191,15 @@ public:
 
 	// dimhotepus: Make clear timer writes stats.
 	explicit CFrameTimer( CEngineStats &engineStats )
-		: m_engineStats{engineStats}, swaptime(0)
+		: m_engineStats{engineStats},
+		swaptime(0), frametime(0),
+		m_flFPSVariability(0), m_flFPSStdDeviationSeconds(0),
+		m_nFrameTimeHistoryIndex(0)
 	{
 		ResetDeltas();
+
+		BitwiseClear( starttime );
+		BitwiseClear( m_pFrameTimeHistory );
 	}
 
 	void MarkFrame();
@@ -1820,10 +1826,7 @@ Host_Speeds
 */
 void CFrameTimer::ResetDeltas()
 {
-	for ( auto &d : deltas )
-	{
-		d = 0.0f;
-	}
+	BitwiseClear( deltas );
 }
 
 void CFrameTimer::MarkFrame()
@@ -1903,7 +1906,7 @@ void CFrameTimer::MarkFrame()
 void CFrameTimer::ComputeFrameVariability()
 {
 	m_pFrameTimeHistory[m_nFrameTimeHistoryIndex] = frametime;
-	if ( ++m_nFrameTimeHistoryIndex >= FRAME_HISTORY_COUNT )
+	if ( ++m_nFrameTimeHistoryIndex >= ssize( m_pFrameTimeHistory ) )
 	{
 		m_nFrameTimeHistoryIndex = 0;
 	}
