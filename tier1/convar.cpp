@@ -766,7 +766,7 @@ void ConVar::InternalSetValue( const char *value )
 
 	// Redetermine value
 	m_fValue		= fNewValue;
-	m_nValue		= ( int )( fNewValue );
+	m_nValue		= static_cast<int>( fNewValue );
 
 	if ( !( m_nFlags & FCVAR_NEVER_AS_STRING ) )
 	{
@@ -893,7 +893,7 @@ void ConVar::InternalSetFloatValue( float fNewValue, bool bForce /*= false */ )
 	// Redetermine value
 	float flOldValue = m_fValue;
 	m_fValue		= fNewValue;
-	m_nValue		= ( int )m_fValue;
+	m_nValue		= static_cast<int>( m_fValue );
 
 	if ( !( m_nFlags & FCVAR_NEVER_AS_STRING ) )
 	{
@@ -928,10 +928,10 @@ void ConVar::InternalSetIntValue( int nValue )
 
 	Assert( m_pParent == this ); // Only valid for root convars.
 
-	auto fValue = (float)nValue;
+	auto fValue = static_cast<float>( nValue );
 	if ( ClampValue( fValue ) )
 	{
-		nValue = ( int )( fValue );
+		nValue = static_cast<int>( fValue );
 	}
 
 	// Redetermine value
@@ -1298,7 +1298,7 @@ void ConVar_PrintDescription( const ConCommandBase *pVar )
 			int intVal = pBounded ? pBounded->GetInt() : var->GetInt();
 			float floatVal = pBounded ? pBounded->GetFloat() : var->GetFloat();
 
-			if ( fabsf( (float)intVal - floatVal ) < 0.000001f )
+			if ( fabsf( static_cast<float>( intVal ) - floatVal ) < 0.000001f )
 			{
 				// dimhotepus: Speedup to chars conversion.
 				V_to_chars( tempVal, intVal );
