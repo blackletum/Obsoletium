@@ -949,14 +949,20 @@ static void UseDefaultBindings()
 	FileHandle_t f = g_pFileSystem->Open( szFileName, "r");
 	if ( !f )
 	{
-		ConMsg( "Couldn't open kb_def.lst\n" );
+		ConMsg( "Couldn't open %s\n", szFileName );
 		return;
 	}
 
 	RunCodeAtScopeExit(g_pFileSystem->Close(f));
 
 	// read file into memory
-	int size = g_pFileSystem->Size(f);
+	const unsigned size{ g_pFileSystem->Size(f) };
+	if ( size == std::numeric_limits<unsigned>::max() )
+	{
+		// dimhotepus: File is too large or unable to get size.
+		ConWarning( "%s is too large or has unknown size\n", szFileName );
+		return;
+	}
 
 	// dimhotepus: ASAN catch. Missed space for '\0'.
 	std::unique_ptr<char[]> startbuf = std::make_unique<char[]>( static_cast<intp>( size ) + 1 );
