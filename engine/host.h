@@ -104,7 +104,6 @@ void Host_FreeToLowMark( bool server );
 void Host_FreeStateAndWorld( bool server );
 void Host_Disconnect( bool bShowMainMenu, const char *pszReason = "" );
 void Host_RunFrame( float time );
-void Host_DumpMemoryStats( void );
 void Host_UpdateMapList( void );
 float Host_GetSoundDuration( const char *pSample );
 bool Host_IsSinglePlayerGame( void );
