@@ -846,7 +846,7 @@ static void SetupNewBindings()
 	char szBindCmd[ 256 ];
 
 	// Load the file
-	constexpr char pFilename[]{ "scripts\\newbindings.txt" };
+	constexpr char pFilename[]{ "scripts" CORRECT_PATH_SEPARATOR_S "newbindings.txt" };
 	KeyValuesAD pNewBindingsData( pFilename );
 	if ( !pNewBindingsData->LoadFromFile( g_pFileSystem, pFilename ) )
 	{
