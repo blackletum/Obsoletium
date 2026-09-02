@@ -12,9 +12,11 @@
 #include <type_traits>
 
 #include "tier1/convar.h"
+#include "tier1/strtools.h"  // dimhotepus: For CORRECT_PATH_SEPARATOR_S 
 #include "steam/steamclientpublic.h"
 
-#define SCRIPT_DIR			"scripts/"
+// dimhotepus: Use correct path separator.
+#define SCRIPT_DIR			"scripts" CORRECT_PATH_SEPARATOR_S
 
 struct model_t;
 struct AudioState_t;
