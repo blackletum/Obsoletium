@@ -599,8 +599,7 @@ int	ConCommand::AutoCompleteSuggest( const char *partial, CUtlVector< CUtlString
 	int iret = ( m_fnCompletionCallback )( partial, rgpchCommands );
 	for ( int i = 0 ; i < iret; ++i )
 	{
-		CUtlString str = rgpchCommands[ i ];
-		commands.AddToTail( str );
+		commands.AddToTail( rgpchCommands[ i ] );
 	}
 	return iret;
 }
