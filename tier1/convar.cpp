@@ -69,13 +69,11 @@ void ConVar_Register( int nCVarFlag, IConCommandBaseAccessor *pAccessor )
 	s_nCVarFlag = nCVarFlag;
 	s_nDLLIdentifier = g_pCVar->AllocateDLLIdentifier();
 
-	ConCommandBase *pCur, *pNext;
-
 	ConCommandBase::s_pAccessor = pAccessor ? pAccessor : &s_DefaultAccessor;
-	pCur = ConCommandBase::s_pConCommandBases;
+	ConCommandBase *pCur = ConCommandBase::s_pConCommandBases;
 	while ( pCur )
 	{
-		pNext = pCur->m_pNext;
+		ConCommandBase *pNext = pCur->m_pNext;
 		pCur->AddFlags( s_nCVarFlag );
 		pCur->Init();
 		pCur = pNext;
