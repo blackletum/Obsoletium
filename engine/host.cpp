@@ -413,7 +413,7 @@ static void OnChangeTelemetryFrameCount ( IConVar *var, const char *pOldValue, f
 	const char *pFrameCount = (( ConVar* )var)->GetString();
 
 	g_Telemetry.FrameCount = strtoul( pFrameCount, &pIEnd, 0 );
-	Msg( " TELEMETRY: Setting Telemetry FrameCount: '%d'\n", g_Telemetry.FrameCount );
+	Msg( " TELEMETRY: Setting Telemetry FrameCount: '%u'\n", g_Telemetry.FrameCount );
 }
 
 static void OnChangeTelemetryServer ( IConVar *var, const char *pOldValue, float flOldValue )
@@ -447,7 +447,7 @@ static void OnChangeTelemetryDemoEnd ( IConVar *var, const char *pOldValue, floa
 	const char *pVal = (( ConVar* )var)->GetString();
 
 	g_Telemetry.DemoTickEnd = strtoul( pVal, &pIEnd, 0 );
-	Msg( " TELEMETRY: Setting Telemetry DemoTickEnd: '%d'\n", g_Telemetry.DemoTickEnd );
+	Msg( " TELEMETRY: Setting Telemetry DemoTickEnd: '%u'\n", g_Telemetry.DemoTickEnd );
 }
 
 ConVar telemetry_pause( "telemetry_pause", "0", 0, "Pause Telemetry", OnChangeTelemetryPause );
