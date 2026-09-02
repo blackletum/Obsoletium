@@ -232,7 +232,6 @@ private:
 	// dimhotepus: Make clear timer writes stats.
 	CEngineStats &m_engineStats;
 
-	double times[9];
 	double swaptime;
 	double frametime;
 	double m_flFPSVariability;
