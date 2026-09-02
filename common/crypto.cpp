@@ -808,7 +808,7 @@ bool CCrypto::RSAEncrypt( const uint8 *pubPlaintextData, size_t cubPlaintextData
 		// ensure there is sufficient room in output buffer for result
 		if ( cubCipherText > ( *pcubEncryptedData ) )
 		{
-			AssertMsg2( false, "CCrypto::RSAEncrypt: insufficient output buffer for encryption, needed %d got %d\n",
+			AssertMsg2( false, "CCrypto::RSAEncrypt: insufficient output buffer for encryption, needed %zu got %zu\n",
 						cubCipherText, *pcubEncryptedData );
 			return false;
 		}
