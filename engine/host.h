@@ -9,7 +9,9 @@
 #ifndef SE_ENGINE_HOST_H
 #define SE_ENGINE_HOST_H
 
-#include "convar.h"
+#include <type_traits>
+
+#include "tier1/convar.h"
 #include "steam/steamclientpublic.h"
 
 #define SCRIPT_DIR			"scripts/"
@@ -149,14 +151,34 @@ extern int	host_frameticks;
 extern int	host_currentframetick;
 
 // PERFORMANCE INFO
-#define MIN_FPS         0.1F         // Host minimum fps value for maxfps.
-#define MAX_FPS         1000.0F        // Upper limit for maxfps.
+constexpr inline float MIN_FPS{0.1F};  // Host minimum fps value for maxfps.
+constexpr inline float MAX_FPS{1000.0F};  // Upper limit for maxfps.
 
-#define MAX_FRAMETIME	0.1F
-#define MIN_FRAMETIME	0.001F
+constexpr inline float MAX_FRAMETIME{0.1F};
+constexpr inline float MIN_FRAMETIME{1.0F / MAX_FPS};
 
-#define TIME_TO_TICKS( dt )		( (int)( 0.5f + (float)(dt) / host_state.interval_per_tick ) )
-#define TICKS_TO_TIME( dt )		( host_state.interval_per_tick * (float)(dt) )
+template<typename TDelta, typename TValue>
+using TimeDeltaConcept = typename std::enable_if_t<
+	std::is_integral_v<TDelta> ||
+	std::is_floating_point_v<TDelta>, TValue>;
+
+template<typename TDelta>
+[[nodiscard]]
+inline
+TimeDeltaConcept<TDelta, int>
+TIME_TO_TICKS( TDelta dt )
+{
+	return static_cast<int>( 0.5f + static_cast<float>( dt ) / host_state.interval_per_tick );
+}
+
+template<typename TDelta>
+[[nodiscard]]
+inline
+TimeDeltaConcept<TDelta, float>
+TICKS_TO_TIME( TDelta dt )
+{
+	return host_state.interval_per_tick * static_cast<float>( dt );
+}
 
 // Normally, this is off, and it keeps the VCR file size smaller, but it can help
 // to turn it on when tracking down out-of-sync errors, because it verifies that more

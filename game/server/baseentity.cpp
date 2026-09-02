@@ -111,8 +111,9 @@ void SendProxy_AnimTime( const SendProp *pProp, const void *pStruct, const void 
 		Assert( !pAnimating->IsUsingClientSideAnimation() );
 	}
 #endif
-	
-	int ticknumber = TIME_TO_TICKS( pEntity->m_flAnimTime );
+
+	// dimhotepus: Use .Get as we need float.
+	int ticknumber = TIME_TO_TICKS( pEntity->m_flAnimTime.Get() );
 	// Tickbase is current tick rounded down to closes 100 ticks
 	int tickbase = gpGlobals->GetNetworkBase( gpGlobals->tickcount, pEntity->entindex() );
 	int addt = 0;
@@ -130,7 +131,8 @@ void SendProxy_SimulationTime( const SendProp *pProp, const void *pStruct, const
 {
 	CBaseEntity *pEntity = (CBaseEntity *)pStruct;
 
-	int ticknumber = TIME_TO_TICKS( pEntity->m_flSimulationTime );
+	// dimhotepus: Use .Get as we need float.
+	int ticknumber = TIME_TO_TICKS( pEntity->m_flSimulationTime.Get() );
 	// tickbase is current tick rounded down to closest 100 ticks
 	int tickbase = gpGlobals->GetNetworkBase( gpGlobals->tickcount, pEntity->entindex() );
 	int addt = 0;
