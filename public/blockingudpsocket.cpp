@@ -38,7 +38,7 @@ CBlockingUDPSocket::~CBlockingUDPSocket()
 
 	if ( m_Socket != kInvalidSocketHandle )
 	{
-		::closesocket( m_Socket );
+		closesocket( m_Socket );
 	}
 }
 
