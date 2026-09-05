@@ -858,19 +858,30 @@ EBugReportUploadStatus Win32UploadBugReportBlocking
 
 	encrypted.PutString( rBugReportParameters.m_sTitle );
 
-	intp bodylen = Q_strlen( rBugReportParameters.m_sBody ) + 1;
+	const intp bodylen = Q_strlen( rBugReportParameters.m_sBody ) + 1;
+	Assert( bodylen <= std::numeric_limits<int>::max() );
 
-	encrypted.PutInt( bodylen );
+	encrypted.PutInt( static_cast<int>( bodylen ) );
 	encrypted.Put( rBugReportParameters.m_sBody, bodylen );
 
 	while ( encrypted.TellPut() % 8 )
 	{
-		encrypted.PutChar( 0 );
+		encrypted.PutUnsignedChar( 0 );
 	}
 
-	EncryptBuffer( cipher, encrypted.Base<unsigned char>(), encrypted.TellPut() );
+	const intp encryptedSize = encrypted.TellPut();
+	EncryptBuffer( cipher, encrypted.Base<unsigned char>(), static_cast<uint>( encryptedSize ) );
+	
+	// dimhotepus: Reject too large reports
+	if ( encryptedSize > std::numeric_limits<short>::max() )
+	{
+		UpdateProgress( rBugReportParameters,
+			"Bug report size in greater than %hd, rejected",
+			std::numeric_limits<short>::max() );
+		return eBugReportUploadFailed;
+	}
 
-	buf.PutShort( (int)encrypted.TellPut() );
+	buf.PutShort( static_cast<short>( encryptedSize ) );
 	buf.Put( encrypted.Base<unsigned char>(), encrypted.TellPut() );
 
 	CBlockingUDPSocket bcs;
@@ -904,20 +915,20 @@ EBugReportUploadStatus Win32UploadBugReportBlocking
 			UpdateProgress( rBugReportParameters, "Checking response." );
 
 			// Parse out data
-			u8 msgtype = (u8)buf.GetChar();
+			u8 msgtype = buf.GetUnsignedChar();
 			if ( M2C_ACKBUGREPORT != msgtype  )
 			{
 				UpdateProgress( rBugReportParameters, "Request denied, invalid message type." );
 				return eBugReportSendingBugReportHeaderFailed;
 			}
-			bool validProtocol = (u8)buf.GetChar() == 1 ? true : false;
+			bool validProtocol = buf.GetUnsignedChar() == 1 ? true : false;
 			if ( !validProtocol )
 			{
 				UpdateProgress( rBugReportParameters, "Request denied, invalid message protocol." );
 				return eBugReportSendingBugReportHeaderFailed;
 			}
 
-			u8 disposition = (u8)buf.GetChar();
+			u8 disposition = buf.GetUnsignedChar();
 			if ( BR_REQEST_FILES != disposition )
 			{
 				// Server doesn't want a bug report, oh well
