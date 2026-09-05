@@ -216,9 +216,9 @@ void CBaseBudgetPanel::Rebuild( const CBudgetPanelConfigData &data )
 	if ( nTimeLabels > m_TimeLabels.Count() )
 	{
 		m_TimeLabels.EnsureCount( nTimeLabels );
+		char name[32];
 		for( i = oldNumTimeLabels; i < m_TimeLabels.Count(); i++ )
 		{
-			char name[1024];
 			V_sprintf_safe( name, "time_label_%zd", i );
 			m_TimeLabels[i] = new vgui::Label( this, name, "TEXT NOT SET YET" );
 		}
