@@ -106,7 +106,7 @@ unsigned int CBlockingUDPSocket::ReceiveSocketMessage( sockaddr_in *packet_from,
 	sockaddr fromaddress;
 	int	fromlen = sizeof( fromaddress );
 
-	int packet_length = VCRHook_recvfrom
+	const auto packet_length = VCRHook_recvfrom
 		(
 		m_Socket, 
 		(char *)buf, 
