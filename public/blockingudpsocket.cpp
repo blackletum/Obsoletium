@@ -18,11 +18,10 @@
 
 #include "tier0/vcrmode.h"
 
-class CBlockingUDPSocket::Impl
+struct CBlockingUDPSocket::Impl
 {
-public:
-	struct sockaddr_in	m_SocketIP;
-	fd_set				m_FDSet;
+	sockaddr_in	m_SocketIP;
+	fd_set		m_FDSet;
 };
 
 CBlockingUDPSocket::CBlockingUDPSocket() :
@@ -96,7 +95,7 @@ bool CBlockingUDPSocket::WaitForMessage( float timeOutInSeconds )
 	return false;
 }
 
-unsigned int CBlockingUDPSocket::ReceiveSocketMessage( sockaddr_in *packet_from, unsigned char *buf, size_t bufsize )
+unsigned int CBlockingUDPSocket::ReceiveSocketMessage( sockaddr_in *packet_from, unsigned char *buf, size_t bufsize ) const
 {
 	BitwiseClear( *packet_from );
 
@@ -127,7 +126,7 @@ unsigned int CBlockingUDPSocket::ReceiveSocketMessage( sockaddr_in *packet_from,
 	return ( unsigned int )packet_length;
 }
 
-bool CBlockingUDPSocket::SendSocketMessage( const sockaddr_in & rRecipient, const unsigned char *buf, size_t bufsize )
+bool CBlockingUDPSocket::SendSocketMessage( const sockaddr_in & rRecipient, const unsigned char *buf, size_t bufsize ) const
 {
 	// Send data
 	const auto bytesSent = sendto
