@@ -78,10 +78,12 @@ bool CBlockingUDPSocket::WaitForMessage( float timeOutInSeconds )
 	FD_ZERO( &m_pImpl->m_FDSet );
 	FD_SET( m_Socket, &m_pImpl->m_FDSet );//lint !e717
 
-	timeval tv;
-	tv.tv_sec = (int)timeOutInSeconds;
-	float remainder = timeOutInSeconds - (int)timeOutInSeconds;
-	tv.tv_usec = (int)( remainder * 1000000 + 0.5f );         /* micro seconds */
+	const int wholeTimeOutInSeconds = (int)timeOutInSeconds;
+	const float remainder = timeOutInSeconds - wholeTimeOutInSeconds;
+
+	timeval tv = {};
+	tv.tv_sec = wholeTimeOutInSeconds;
+	tv.tv_usec = (int)( remainder * 1000000 + 0.5f );  // micro seconds
 	
 	if ( SOCKET_ERROR == ::select( size_cast<int>( ( intp )m_Socket + 1 ), &m_pImpl->m_FDSet, NULL, NULL, &tv ) )
 	{
