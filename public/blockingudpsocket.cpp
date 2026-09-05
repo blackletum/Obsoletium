@@ -66,6 +66,8 @@ bool CBlockingUDPSocket::CreateSocket()
 	{
 		m_pImpl->m_SocketIP.sin_addr.s_addr = 0L;
 	}
+#else
+#error Please specify your platform for sockets.
 #endif
 
 	return true;
